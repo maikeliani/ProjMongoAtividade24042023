@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjMongoAtividade24042023", "ProjMongoAtividade24042023\ProjMongoAtividade24042023.csproj", "{658EC6B4-98D2-4FC9-BB69-40225665A4E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{658EC6B4-98D2-4FC9-BB69-40225665A4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{658EC6B4-98D2-4FC9-BB69-40225665A4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{658EC6B4-98D2-4FC9-BB69-40225665A4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{658EC6B4-98D2-4FC9-BB69-40225665A4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A39172F-0B4F-494B-AE5C-E07A75D50030}
+	EndGlobalSection
+EndGlobal
