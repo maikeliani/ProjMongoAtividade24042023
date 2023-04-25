@@ -12,15 +12,15 @@ namespace ProjMongoAtividade24042023.Services
         public CityService(IProjMongoAtividadeSettings settings)
         {
             var city = new MongoClient(settings.ConnectionString); // recebe a conexao
-            var database = city.GetDatabase(settings.DatabaseName);
-            _city = database.GetCollection<City>(settings.DatabaseName);
+            var database = city.GetDatabase(settings.DatabaseName); // recebe o banco setado na settings.json
+            _city = database.GetCollection<City>(settings.CityCollectionName); //atenção no nome da collection!
         }
 
         public List<City> Get() => _city.Find(c => true).ToList();
 
 
         public City Get(string Id) => _city.Find(c => c.Id == Id).FirstOrDefault();
-        public City Create(City city)
+        public City Create(City city)            
         {
             _city.InsertOne(city);
             return city;

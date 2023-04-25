@@ -8,7 +8,7 @@ namespace ProjMongoAtividade24042023.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string Description { get; set; }
-        public DateTime Dt_Register { get; set; }
+        public string? Description { get; set; } // coloquei "?"
+        public DateTime? Dt_Register { get; set; }
     }
 }

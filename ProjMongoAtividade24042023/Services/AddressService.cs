@@ -7,13 +7,18 @@ namespace ProjMongoAtividade24042023.Services
     public class AddressService
     {
         private readonly IMongoCollection<Address> _address;
+        
+          
 
         public AddressService(IProjMongoAtividadeSettings settings)
         {
             var address = new MongoClient(settings.ConnectionString); // recebe a conexao
             var database = address.GetDatabase(settings.DatabaseName);
-            _address = database.GetCollection<Address>(settings.DatabaseName);
+            _address = database.GetCollection<Address>(settings.AddressCollectionName);     //atenção no nome da collection!       
+
         }
+
+
 
         public List<Address> Get() => _address.Find(a => true).ToList(); 
 

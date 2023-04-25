@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using ProjMongoAtividade24042023.Config;
 using ProjMongoAtividade24042023.Models;
 using ProjMongoAtividade24042023.Services;
 
@@ -10,10 +12,14 @@ namespace ProjMongoAtividade24042023.Controllers
     public class AddressController : ControllerBase
     {
         private readonly AddressService _addressService;
+        private CityService _cityService; // criei pra teste
+        
+       
 
-        public AddressController(AddressService addressService)
+        public AddressController(AddressService addressService, CityService cityService) // o segundo parametro ( CityService cityService) fui eu que colokei pra teste
         {
             _addressService = addressService;
+            _cityService = cityService;
         }
 
         [HttpGet]
@@ -29,8 +35,17 @@ namespace ProjMongoAtividade24042023.Controllers
         [HttpPost]
         public ActionResult<Address> Create(Address address)
         {
+            var city = _cityService.Get(address.City.Id); // meu testeee
+
+            if(city == null) //meu testee
+            {
+                NotFound();
+            }
+            address.City = city; // meu testeeee
+
             // _clientService.Create(client);
             //return CreatedAtRoute("GetClient", new { id = client.Id }, client);
+
             return _addressService.Create(address);
         }
 

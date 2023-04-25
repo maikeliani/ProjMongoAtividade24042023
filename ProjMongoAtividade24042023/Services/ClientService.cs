@@ -12,7 +12,7 @@ namespace ProjMongoAtividade24042023.Services
         {
             var client = new MongoClient(settings.ConnectionString); // recebe a conexao
             var database = client.GetDatabase(settings.DatabaseName);
-            _client = database.GetCollection<Client>(settings.DatabaseName);
+            _client = database.GetCollection<Client>(settings.ClientCollectionName);//atenção no nome da collection!
         }
 
         public List<Client> Get() => _client.Find(c => true).ToList(); // esse c=> true é o mems oque usar while(true)... vai devolver os Client ate acabar
@@ -25,7 +25,7 @@ namespace ProjMongoAtividade24042023.Services
             return client;
         }
 
-        public void Update(string id, Client client) => _client.ReplaceOne(c => c.Id == id, client);
+        public void Update(string id, Client client) => _client.ReplaceOne(c => c.Id == id, client);//substitiu pelo client no parametro
 
         public void Delete(string id) => _client.DeleteOne(c => c.Id == id);
 

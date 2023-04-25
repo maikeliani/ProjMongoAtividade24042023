@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using ProjMongoAtividade24042023.Models;
 using ProjMongoAtividade24042023.Services;
 
@@ -10,10 +11,14 @@ namespace ProjMongoAtividade24042023.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ClientService _clientService;
+        private  AddressService _addressService;//testee
+       
 
-        public ClientController(ClientService clientService)
+
+        public ClientController(ClientService clientService, AddressService addressService) //teste com os egundo parametro
         {
             _clientService = clientService;
+            _addressService = addressService;//teste
         }
 
         [HttpGet]
@@ -28,9 +33,11 @@ namespace ProjMongoAtividade24042023.Controllers
         }
         [HttpPost]
         public ActionResult<Client> Create(Client client)
-        {
-           
-            return _clientService.Create(client);
+        {           
+            var address = _addressService.Get(client.Adress.Id);//testeee
+            if (address == null) return NotFound();//testee
+            client.Adress = address; //testee
+            return _clientService.Create(client); // clientService vai enviar esse client e la  na service vai dar replace colocando esse client no lugar do atual
         }
 
         [HttpPut("{id:length(24)}")]
@@ -53,7 +60,7 @@ namespace ProjMongoAtividade24042023.Controllers
 
             var client = _clientService.Get(id);
             if (client == null) return NotFound();
-            _clientService.Delete(id);
+            _clientService.Delete(id); // chama o metodo Delete do ClientService
 
             return Ok();
         }
