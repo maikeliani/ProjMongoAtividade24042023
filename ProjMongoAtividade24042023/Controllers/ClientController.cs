@@ -12,13 +12,14 @@ namespace ProjMongoAtividade24042023.Controllers
     {
         private readonly ClientService _clientService;
         private  AddressService _addressService;//testee
-       
+        private CityService _citiservice;//testee
 
 
-        public ClientController(ClientService clientService, AddressService addressService) //teste com os egundo parametro
+        public ClientController(ClientService clientService, AddressService addressService, CityService citiservice) //teste com o segundo e o terceiro parametro
         {
             _clientService = clientService;
             _addressService = addressService;//teste
+            _citiservice = citiservice;//testeee
         }
 
         [HttpGet]
@@ -36,7 +37,11 @@ namespace ProjMongoAtividade24042023.Controllers
         {           
             var address = _addressService.Get(client.Adress.Id);//testeee
             if (address == null) return NotFound();//testee
+            var city = _citiservice.Get(address.City.Id); // testeee pega a cidade pelo Id, se existir
+            if (city == null) return NotFound(); // testeeeeee
+            address.City = city; //testeee
             client.Adress = address; //testee
+            
             return _clientService.Create(client); // clientService vai enviar esse client e la  na service vai dar replace colocando esse client no lugar do atual
         }
 

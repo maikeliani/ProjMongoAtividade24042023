@@ -29,10 +29,11 @@ namespace ProjMongoAtividade24042023.Controllers
         [HttpPost]
         public ActionResult<City> Create(City city)
         {
-          // var c=  _cityService.Get(city.Id);//testeee
-           // if (c != null) return Ok(); //testeee
-            // _clientService.Create(client);
-            //return CreatedAtRoute("GetClient", new { id = client.Id }, client);
+            
+           var c=  _cityService.Get(city.Id);//testeee
+          if (c != null) return Ok(c);//testee
+          // _clientService.Create(client);
+          //return CreatedAtRoute("GetClient", new { id = client.Id }, client);
             return _cityService.Create(city);
         }
 
